@@ -1,3 +1,8 @@
+# (Jamie) -> my excludes
+Content/StarterContent/
+Content/KiteDemo/
+
+
 # Visual Studio 2015 user specific files
 .vs/
 
@@ -43,8 +48,6 @@
 *.sdf
 *.VC.db
 *.VC.opendb
-
-Content/StarterContent/
 
 # Precompiled Assets
 SourceArt/**/*.png
