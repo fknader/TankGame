@@ -18,5 +18,10 @@ public:
 
 	ATank * GetControlledTank() const;
 
-	
+	//get a reference to the inherited BeginPlay
+	virtual void BeginPlay() override;
+	void AimTowardsCrossHairs();
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 };
