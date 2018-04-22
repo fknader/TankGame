@@ -17,7 +17,17 @@ class BATTLE_TANK_API ATankPlayerController : public APlayerController
 private:
 
 	virtual void BeginPlay() override;
+	void Tick(float DeltaTime);
 	ATank * GetControlledTank() const;
+	///Start tank moving barrel towards cross hairs
+	void AimTowardsCrossHairs();
+	///Get the location where a line trace thru the cross hairs hits an actor (landscape, tank, whatever)
+	///Uses an OUT parameter "HitLocation"
+	bool GetSightRayHitLocation(FVector & HitLocation) const;
+	UPROPERTY(EditAnywhere)
+	float CrossHairsXLocation = 0.5;
+	UPROPERTY(EditAnywhere)
+	float CrossHairsYLocation = 0.3333;
 
-	
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
 };
