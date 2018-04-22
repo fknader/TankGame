@@ -14,6 +14,7 @@ class BATTLE_TANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
 	
+<<<<<<< HEAD
 private:
 	void Tick(float DeltaTime);
 	ATank * GetControlledTank() const;
@@ -23,4 +24,15 @@ private:
 	
 virtual void BeginPlay() override;
 
+=======
+	
+private:
+
+	ATank * GetControlledTank() const;
+	ATank * GetPlayerTank() const;
+
+	//get a reference to the inherited BeginPlay
+	virtual void BeginPlay() override;
+	
+>>>>>>> master
 };
