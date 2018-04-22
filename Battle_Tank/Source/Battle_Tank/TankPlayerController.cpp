@@ -85,11 +85,11 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 		StartLocation,
 		EndLocation,
 		ECollisionChannel::ECC_Visibility)) {
-		auto HitComp = HitResult.GetComponent();
+		//auto HitComp = HitResult.GetComponent();
 		
 
 		HitLocation = HitResult.Location;
-		UE_LOG(LogTemp, Warning, TEXT(" Target is %s "), *HitComp->GetName())
+		//UE_LOG(LogTemp, Warning, TEXT(" Target is %s "), *HitComp->GetName())
 		return true;
 	}
 	HitLocation = FVector(0.0);
