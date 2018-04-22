@@ -15,7 +15,7 @@ class BATTLE_TANK_API ATankAIController : public AAIController
 	GENERATED_BODY()
 	
 private:
-
+	void Tick(float DeltaTime);
 	ATank * GetControlledTank() const;
 	ATank * GetPlayerTank() const;	//Get a reference to the player tank so we can shoot at it
 

@@ -37,7 +37,8 @@ void ATankPlayerController::AimTowardsCrossHairs() {
 	FVector HitLocation;
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hit Location is %s"), *HitLocation.ToString())
+		GetControlledTank()->AimAt(HitLocation);
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Location is %s"), *HitLocation.ToString())
 	}
 }
 
@@ -58,7 +59,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector & HitLocation) const
 		//UE_LOG(LogTemp, Warning, TEXT("World Direction is %s"), *LookDirection.ToString())
 		return true;
 	}
-	HitLocation = FVector(0.0);
+	//HitLocation = FVector(0.0);
 	return false;
 }
 
@@ -84,11 +85,11 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 		StartLocation,
 		EndLocation,
 		ECollisionChannel::ECC_Visibility)) {
-		//auto HitComp = HitResult.GetComponent();
+		auto HitComp = HitResult.GetComponent();
 		
 
 		HitLocation = HitResult.Location;
-		//UE_LOG(LogTemp, Warning, TEXT(" Target is %s "), *HitComp)
+		UE_LOG(LogTemp, Warning, TEXT(" Target is %s "), *HitComp->GetName())
 		return true;
 	}
 	HitLocation = FVector(0.0);

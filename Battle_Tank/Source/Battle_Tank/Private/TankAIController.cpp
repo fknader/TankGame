@@ -5,6 +5,14 @@
 #include "Engine/World.h"
 
 
+// Called every frame
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	ATank* target = GetPlayerTank();
+	GetControlledTank()->AimAt(target->GetActorLocation());
+
+}
 
 
 void ATankAIController::BeginPlay()
