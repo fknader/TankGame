@@ -9,7 +9,9 @@ void ATankAIController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	ATank* target = GetPlayerTank();
-	GetControlledTank()->AimAt(target->GetActorLocation());
+	if (target) {
+		GetControlledTank()->AimAt(target->GetActorLocation());
+	}
 
 }
 
