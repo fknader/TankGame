@@ -43,22 +43,32 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 {
-	//auto ThisTankName = GetOwner()->GetName();
-	auto BarrelLocation = Barrel->GetComponentLocation();
-	//UE_LOG(LogTemp, Warning, TEXT("%s aiming at %s from %s"), *ThisTankName, *HitLocation.ToString(), *BarrelLocation.ToString())
+	
+	///Instead of using GetComponentLocation: Create a socket at the end of the barrel, called "Projectile"
+	///and then use GetSocketLocation.
+	auto StartLocation = Barrel->GetSocketLocation(FName("Projectile"));
+	
 	if (!Barrel) { return; }
 	FVector TossVelocity;
 	if (UGameplayStatics::SuggestProjectileVelocity(
 		this, 
 		TossVelocity, 
-		BarrelLocation, 
+		StartLocation, 
 		HitLocation, 
 		LaunchSpeed, 
-		false)) 
+		false,
+		0.f,
+		0.f,
+		ESuggestProjVelocityTraceOption::DoNotTrace)) 
 	{
-	
+		///GetSafeNormal "normalizes" a vector (enuring you dont divide by zero) - by making it a unit vector
+		///ie strip off the length, making it length 1 - but maintaining the Direction. 
+		///Effectively getting the Direction component
+		auto AimDirection = TossVelocity.GetSafeNormal();
+		auto ThisTankName = GetOwner()->GetName();
+
+		UE_LOG(LogTemp, Warning, TEXT(" %s aiming at %s"), *ThisTankName, *AimDirection.ToString())
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("Launch speed %f"), LaunchSpeed)
 }
 
